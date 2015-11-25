@@ -1,0 +1,43 @@
+The detailed results for each case are provided below.
+Note that the values used in README file are averages
+that are calculated using these values.
+
+-----------------------------------------------
+
+
+N = 2000          mm_noreuse          mm_reuse
+
+icc - O0          1m39.298s           1m18.878s
+                  1m38.423s           1m21.616s
+                  1m37.620s           1m20.300s
+
+icc               0m5.881s            0m0.001s
+                  0m5.878s            0m0.001s
+                  0m5.843s            0m0.000s
+
+icc -O3           0m3.688s            0m0.001s
+                  0m3.690s            0m0.000s
+                  0m3.679s            0m0.000s
+
+
+----------------------------------------------
+
+
+N =2048           mm_noreuse          mm_reuse
+
+icc - O0          3m47.880s           2m33.156s
+                  3m46.162s           2m32.127s
+                  3m46.532s           2m31.907s
+
+icc               0m6.322s            0m0.001s
+                  0m6.290s            0m0.001s
+                  0m6.251s            0m0.001s
+
+icc -O3           0m4.333s            0m0.000s
+                  0m4.123s            0m0.000s
+                  0m4.390s            0m0.000s
+
+
+----------------------------------------------
+
+

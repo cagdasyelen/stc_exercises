@@ -1,0 +1,82 @@
+In this assignment, we will investigate how different types of optimization options and data
+reuse effect matrix multiplication performance. First we will apply this to 2000x2000 matrix,
+and then we will increase the size of the matrix to 2048x2048. 
+
+
+The resulting execution times are provided below.
+
+----------------------------------------
+
+2000         -mm_noreuse-    -mm_reuse-
+
+icc -O0       1m38.447s       1m20.265s
+
+icc           0m5.867s        0m0.001
+
+icc -O3       0m3.686s        0m0.000s
+
+
+2048          mm_noreuse      mm_reuse
+
+icc -O0       3m46.858s       2m32.397s
+
+icc           0m6.288s        0m0.001s
+
+icc -O3       0m4.282s        0m0.000
+
+
+---------------------------------------
+
+--1--
+
+As we can see from the results, performance of mm_reuse is always better than the performance
+of mm_noreuse. This obviously proves that data reuse increases the performance. This stems from
+the fact that the data that we reuse is stays in the register, therefore CPU reaches this data 
+much faster than it reaches some other data from the main memory(Or L caches). Moreover, using
+different compiler optimization also effects the execution performance as we can see above. 
+
+
+--2--
+
+It is obvious that -O3 optimization significantly improves the performance. The code that we
+compiled using -O3 optimization resulted in smallest amount of execution time and showed the
+best performance among other options.
+
+-O0 Optimization : This means disabling optimizations for icc compiler. As we expected, this
+option gave the poorest performance results.
+
+-Default Optimization : icc compiler uses -O2 optimization as default. This option enables 
+optimizations for speed. The compiler vectorization is enabled and some basic loop optimizations
+are applied at -O2 optimization. As we can see, our results show similar pattern. The performance
+is increased aggresively compared to -O0 optimization when we use default optimization.
+
+-O3 Optimization : This option uses -O2 optimizations and enables more aggressive loop
+optimizations. Because our code is based on using loops and floating point calculations, -O3
+optimization option is useful for our case. In parallel with this, our results showed the best
+performance when we use -O3 optimization.
+
+
+--3--
+
+The code with data reuse showed better performance as we expected. As we explained in the first
+part, CPU reaches the registers much more faster than it reaches L Caches and Main Memory. When
+we reuse data, data stays in the registers and CPU shows better performance. Therefore, data
+reuse increases the execution performance and our results confirmed this performance increase.
+
+
+--4--
+
+When the matrix size is changed from 2000 to 2048, we expect changes depending on the optimization
+option that we use. This stems from the fact that optimization type may decrease the complexity 
+for number of operations (2n^3). Otherwise, we have quadratic (2n^2) compexity for our matrix
+data. As we can see from our results, increase in matrix size (2000 to 2048) effected the 
+performance significantly when we used -O0(Optimizations disabled). However, when we used default
+or -O3 optimization option, the difference between two matrix sizes is not that large. This
+fact stems from the fact that operation comlexity is cubic(2n^3) while the data complexity is
+quadratic (2n^3) and the optimizations helped us to overcome the operation compexity, whose impact
+is larger than data complexity.
+
+
+
+
+
