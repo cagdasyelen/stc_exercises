@@ -1,0 +1,110 @@
+In this assignment, we will implement iterative methods such as Jacobi Method, 
+Gauss-Seidel Method, and Gram-Schmidt Medhod(For the second part).
+
+
+---------------------------PART 1-A Jacobi Method---------------------------------------
+
+jacobi.c file implements Jacobi Method and it is called by the main method inside prog.c file.
+It uses several functions like print_matrix, check_convergence ; which are implemented in 
+routines.c file. 
+
+The program implements the Jacobi Method for the given A matrix and b vector to solve the
+Ax = b , a system of linear equations. However, the method diverges for the given A matrix and b vector. The program checks divergence by setting a limit to number of iterations, and if the
+limit has been reached, it stops iterating and prints that the method is failed.This might 
+stem from two facts:
+
+(i) The matrix is singular, and it has infinitely many solutions for the given b vector if the
+given b vector is in the space spanned by matrix A. In this case, the method fails to converge
+to a solution unless the initial x inputted by user is already a solution to the system.
+
+(ii) For Jacobi Method to work well, the the system should be made of diagonally dominant 
+system of equations. Being diagonally dominant means that for each row, the absolute value
+of the diagonal term is greater than the sum of absolute values of other terms. In our case
+matrix A is obviously is not diagonally dominant. Even though it is not a necessary condition
+for the method to converge, it is highly probable that it might be the reason for divergence.
+
+
+As a result, Jacobi Method fails for the given system of equations. (Ax = b)
+
+
+
+---------------------------PART 1-B Gauss_Seidel Method--------------------------------
+
+gauss_seidel.c file implements Gauss Seidel Method and it is called by the main method inside
+prog.c file. Similarly, it uses the functions implemented inside routines.c files for the 
+method.
+
+The program implements the Gauss Seidel Method for the given A matrix and b vector to solve
+Ax=b, a system of linear equations. A sufficient condition for the method to converge is that
+A needs to be positive-definite matrix. Becase A does not have all of its eigenvalues having
+positive real parts, A is not positive definite. Eventhough it does not satisfy the positive
+definiteness requirement, the method converges becuase b is in the space which is spanned by
+A. After approximately 82 iterations, the method converges and produces the following result:
+
+x vector :
+
+1.200000000000e+01
+5.999998071192e+00
+-2.999999035596e+00
+
+which is approximately one of the solutions for the system.
+
+As a result, Gauss-Seidel Method converges for the given system of equations.
+
+
+
+-------------------------------PART 1-C Fail Cases-------------------------------------
+
+
+(i) Jacobi Method is already failed for the given case, therefore we do not need to find a 
+case for which Jacobi Method fails.
+
+(ii) For the Gauss_Seidel method to fail, we need to make sure that A matrix is not positive
+definite, which means it has at least one non-positive eigenvalue(For the real part). The
+following matrix is used to make Gauss-Seidel method failed.
+
+A:
+5 6 2
+6 4 4
+1 1 6
+
+
+------------------------------PART 2 Gram-Schmidt Method--------------------------------
+
+gram_schmidt.c file implements Gram_Schmidt Method and it is called by the main method inside
+prog.c file. It also uses functions implemented in routines.c file.
+
+The program implements the Gram_Schmidt method for n=3. That means our vectors to be
+normalized have 3 rows. By the definition of method, Gram_Schmidt is guaranteed to converge
+in n iterations since it creates orthonormal basis vectors for n dimensional space. That is
+why, the program is hard coded instead of running in a loop. The set of orthonormal vectors 
+produced by the program are provided below:
+
+Vector e1:
+
+9.428090415821e-01
+2.357022603955e-01
+-2.357022603955e-01
+
+Vector e2:
+
+-1.248781082109e-01
+9.053662845290e-01
+4.058538516854e-01
+
+Vector e3:
+
+3.090575499818e-01
+-3.532086285507e-01
+8.830215713767e-01
+
+
+It can be easily checked that they are orthogonal to each other and their individual 2-norm
+is 1, which indicates they are orthonormal to each other.
+
+
+-------------------------------EndOfREADME------------------------------------------
+
+
+
+
