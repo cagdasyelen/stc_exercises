@@ -1,0 +1,64 @@
+In this project, the main purpose is to optimize the number of samples which are used to train
+for multiple linear regression problems.
+
+The following diagram shows the file/folder structure of the Project
+
+Project
+    README
+    bin
+        plot_all_cost
+        plot_gradient_cost
+        prog
+    data
+        data.csv
+    dev
+        txt_to_csv.py
+    doc
+    src
+        Makefile
+        parameters.h
+        plot_all_cost.c
+        plot_gradient_cost.c
+        prog.c
+        routines.c
+
+
+For user to create the executable files, the user needs to enter the /src directory and type
+"make". The executable files will be created under /bin directory. The user also can delete all
+the executable files and the object files created after compilation by typing "make clobber" 
+inside /src directory.
+
+-bin: All executable files are created under this directory
+
+    prog: This program implements the two step optimization(Binary search and second step search)
+          and outputs the optimum number of training samples for the dataset.
+
+    plot_all_cost: It iterates through all 506 possible number of training samples and creates
+                    all_cost.dat, which includes the cost for 506 different possibilities,
+                    under /data directory. Executing this program takes 5~10 mins because it
+                    iterates through 1 training samples to 506 different training samples with
+                    averaging them 5 times.
+
+    plot_gradient_cost: This program implements the gradient descent method and saves the cost
+                        after every iteration so that the user can see how the cost decreases
+                        as the gradient descent algorithm runs. Saved cost data for 100000
+                        iterations are written to gradient_cost.dat file under /data directory.
+
+
+-data: It includes the input dataset file, which is data.csv. This file includes 506 different
+        samples of housing price data with 13 features like size, location, crime rate, etc.
+      all_cost.dat and gradient_cost.dat files are also created under this directory as it is
+      mentioned previously.
+
+
+-dev: This directory includes the python script named txt_to_csv.py. This script converts 
+      space seperated data to csv seperated data for our program to use if the dataset file
+      is space seperated.
+
+
+
+-src: This folder includes all the source files including Makefile.
+
+
+
+
